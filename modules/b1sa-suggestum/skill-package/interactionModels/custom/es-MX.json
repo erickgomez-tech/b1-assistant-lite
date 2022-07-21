@@ -1,0 +1,263 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "matilde godinez",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "SayHello",
+          "slots": [
+            {
+              "name": "FirstName",
+              "type": "AMAZON.FirstName"
+            }
+          ],
+          "samples": [
+            "Dile hola a {FirstName}",
+            "Saluda a nuestro amigo {FirstName}"
+          ]
+        },
+        {
+          "name": "MakePurchase",
+          "slots": [
+            {
+              "name": "ItemName",
+              "type": "SAP_ITEMS"
+            },
+            {
+              "name": "Quantity",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "ItemRecom",
+              "type": "SAP_ITEMS"
+            }
+          ],
+          "samples": [
+            "I need office supplies",
+            "get me office supplies",
+            "buy me office supplies",
+            "for office supplies",
+            "I need to buy things",
+            "I need to place an order",
+            "{ItemName}",
+            "buy me {ItemName}",
+            "buy me {Quantity} unities of {ItemName}",
+            "buy me {Quantity} unity of {ItemName}",
+            "buy me {Quantity} packs of {ItemName}",
+            "buy me {Quantity} pack of {ItemName}",
+            "{Quantity} unities",
+            "{Quantity} unity",
+            "{Quantity} pack",
+            "{Quantity} packs",
+            "get me also {ItemRecom}",
+            "{ItemRecom} will be nice",
+            "you can add {ItemRecom} to this order",
+            "{ItemRecom} and i am good"
+          ]
+        },
+        {
+          "name": "SalesInfo",
+          "slots": [
+            {
+              "name": "SalesQuarter",
+              "type": "SAP_QUARTERS"
+            },
+            {
+              "name": "SalesYear",
+              "type": "SAP_YEAR"
+            }
+          ],
+          "samples": [
+            "por favor dime las ventas del {SalesQuarter} trimestre del año {SalesYear} "
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": []
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "id": "Q4",
+              "name": {
+                "value": "cuarto",
+                "synonyms": [
+                  "Q4  ",
+                  "q4"
+                ]
+              }
+            },
+            {
+              "id": "Q3",
+              "name": {
+                "value": "tercer",
+                "synonyms": [
+                  "q3",
+                  "Q3"
+                ]
+              }
+            },
+            {
+              "id": "Q2",
+              "name": {
+                "value": "segundo",
+                "synonyms": [
+                  "q2",
+                  "Q2"
+                ]
+              }
+            },
+            {
+              "id": "Q1",
+              "name": {
+                "value": "primer",
+                "synonyms": [
+                  "q1",
+                  "Q1"
+                ]
+              }
+            }
+          ],
+          "name": "SAP_QUARTERS"
+        },
+        {
+          "values": [
+            {
+              "id": "drive",
+              "name": {
+                "value": "usb"
+              }
+            },
+            {
+              "name": {
+                "value": "usb drive"
+              }
+            },
+            {
+              "name": {
+                "value": "ink"
+              }
+            },
+            {
+              "id": "ink",
+              "name": {
+                "value": "printer ink"
+              }
+            },
+            {
+              "name": {
+                "value": "paper"
+              }
+            },
+            {
+              "id": "paper",
+              "name": {
+                "value": "printer paper"
+              }
+            }
+          ],
+          "name": "SAP_ITEMS"
+        },
+        {
+          "values": [
+            {
+              "id": "2022",
+              "name": {
+                "value": "actual",
+                "synonyms": [
+                  "2022"
+                ]
+              }
+            }
+          ],
+          "name": "SAP_YEAR"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "SalesInfo",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "SalesQuarter",
+              "type": "SAP_QUARTERS",
+              "elicitationRequired": false,
+              "confirmationRequired": false,
+              "prompts": {},
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.261777776730.36457673745.187009367255"
+                }
+              ]
+            },
+            {
+              "name": "SalesYear",
+              "type": "SAP_YEAR",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.219526538290.983152764806"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Slot.Validation.261777776730.36457673745.187009367255",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "No entendí"
+          },
+          {
+            "type": "PlainText",
+            "value": "Disculpa, podrías repetir?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Perdón?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.219526538290.983152764806",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Cuál es el año?"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "10"
+}
